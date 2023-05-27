@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="ManueverDatabase" load_steps=2 format=3 uid="uid://dq8v5k44wm75p"]
+
+[ext_resource type="Script" path="res://manipulation/Manuevers/ManueverDatabase.gd" id="1_m4oyf"]
+
+[resource]
+script = ExtResource("1_m4oyf")

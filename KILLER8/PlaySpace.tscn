@@ -1,0 +1,92 @@
+[gd_scene load_steps=16 format=3 uid="uid://c1oetwbfl2vui"]
+
+[ext_resource type="Script" path="res://Playspace.gd" id="1_jvqcs"]
+[ext_resource type="Script" path="res://Cards.gd" id="2_font6"]
+[ext_resource type="PackedScene" uid="uid://vtal1h7lbw8o" path="res://characters/Token.tscn" id="2_frmtw"]
+[ext_resource type="Script" path="res://Deck.gd" id="3_t7h6y"]
+[ext_resource type="Texture2D" uid="uid://bur4hbd8wn1ii" path="res://assets/Card Borders etc/Back_Texture.png" id="4_e8pr7"]
+[ext_resource type="Texture2D" uid="uid://blypku3nc0t5g" path="res://assets/Card Borders etc/Gold_Border.png" id="5_j7le2"]
+[ext_resource type="Script" path="res://DeckDraw.gd" id="6_d7jjp"]
+[ext_resource type="Script" path="res://PlayerHand.gd" id="7_mfblq"]
+[ext_resource type="PackedScene" uid="uid://dd1u4subp2ufu" path="res://CardGame/PlayArea.tscn" id="8_mcvug"]
+[ext_resource type="PackedScene" uid="uid://dwmrhs1rhlgxn" path="res://characters/player_token.tscn" id="9_84hmh"]
+[ext_resource type="PackedScene" uid="uid://cc7ke01bhrn58" path="res://manipulation/TestWall.tscn" id="10_k468l"]
+[ext_resource type="PackedScene" uid="uid://c0yoaqraotjp2" path="res://manipulation/BaseMap.tscn" id="11_yp8or"]
+
+[sub_resource type="Curve" id="Curve_6eq51"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7srgy"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_pxjf3"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, -0.0302414, 0, 0, Vector2(1, -1), 0.0722837, 0.0, 0, 0]
+point_count = 2
+
+[node name="Playspace" type="Node2D"]
+position = Vector2(-36.5378, -20.7887)
+script = ExtResource("1_jvqcs")
+
+[node name="TileMap" parent="." instance=ExtResource("11_yp8or")]
+position = Vector2(256, 32)
+
+[node name="Cards" type="Node2D" parent="."]
+editor_description = "All cards wil be added to this node so they're separated from everything else and easy to find. "
+script = ExtResource("2_font6")
+
+[node name="Deck" type="Node2D" parent="."]
+script = ExtResource("3_t7h6y")
+
+[node name="DeckDraw" type="TextureButton" parent="Deck"]
+offset_right = 40.0
+offset_bottom = 56.0
+scale = Vector2(3.125, 3.125)
+texture_normal = ExtResource("4_e8pr7")
+texture_pressed = ExtResource("4_e8pr7")
+texture_hover = ExtResource("4_e8pr7")
+texture_disabled = ExtResource("5_j7le2")
+script = ExtResource("6_d7jjp")
+
+[node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("7_mfblq")
+spread_curve = SubResource("Curve_6eq51")
+height_curve = SubResource("Curve_7srgy")
+rotation_curve = SubResource("Curve_pxjf3")
+max_width = 150.0
+max_height = 35.0
+
+[node name="PlayAreaTop" parent="." instance=ExtResource("8_mcvug")]
+position = Vector2(997, 115)
+
+[node name="PlayerToken" parent="." instance=ExtResource("9_84hmh")]
+y_sort_enabled = true
+position = Vector2(-74.7731, 235.134)
+collision_layer = 1
+script = null
+
+[node name="Token" parent="." instance=ExtResource("2_frmtw")]
+position = Vector2(323.446, 201.508)
+
+[node name="Node2D" parent="." instance=ExtResource("10_k468l")]
+y_sort_enabled = true
+position = Vector2(1310, 62)
+
+[connection signal="HandChange" from="." to="PlayerHand" method="_on_playspace_hand_change"]
+[connection signal="basic_movement" from="Cards" to="PlayerToken" method="_on_cards_basic_movement"]
+[connection signal="card_played" from="Cards" to="Token" method="_on_cards_card_played_move_token"]
+[connection signal="child_entered_tree" from="Cards" to="Cards" method="_on_child_entered_tree"]
+[connection signal="free_movement" from="Cards" to="PlayerToken" method="_on_cards_free_movement"]
+[connection signal="ghost" from="Cards" to="PlayerToken" method="_on_cards_ghost"]
+[connection signal="move_token" from="Cards" to="PlayerToken" method="_on_cards_move_token"]
+[connection signal="prompt" from="Cards" to="PlayerToken" method="_on_cards_prompt"]
+[connection signal="card_drawn" from="Deck" to="PlayerHand" method="_on_deck_card_drawn"]
+[connection signal="pressed" from="Deck/DeckDraw" to="." method="_on_deck_draw_pressed"]
+[connection signal="child_entered_tree" from="PlayerHand" to="PlayerHand" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="PlayerHand" to="PlayerHand" method="_on_child_exiting_tree"]
+[connection signal="CardCanPlay" from="PlayAreaTop" to="." method="_on_play_area_top_card_can_play"]
+[connection signal="CardCannotPlay" from="PlayAreaTop" to="." method="_on_play_area_top_card_cannot_play"]
+[connection signal="token_death" from="Token" to="." method="_on_token_token_death"]

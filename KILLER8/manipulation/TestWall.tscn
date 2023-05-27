@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc7ke01bhrn58"]
+
+[ext_resource type="Texture2D" uid="uid://2se4ipb0oybs" path="res://assets/stone_wall02.png" id="1_qyqee"]
+[ext_resource type="Script" path="res://manipulation/TestWall.gd" id="1_ydlkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1laht"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skkt2"]
+size = Vector2(210, 210)
+
+[node name="TestWall" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_ydlkc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(100, 100)
+scale = Vector2(0.195, 0.195)
+texture = ExtResource("1_qyqee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(100, 100)
+scale = Vector2(0.195, 0.195)
+shape = SubResource("RectangleShape2D_1laht")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(100, 100)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_skkt2")

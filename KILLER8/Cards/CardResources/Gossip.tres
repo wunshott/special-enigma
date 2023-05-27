@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardAttributes" load_steps=2 format=3 uid="uid://cuo84lydqk13s"]
+
+[ext_resource type="Script" path="res://Cards/CardResources/card_attributes.gd" id="1_r5fan"]
+
+[resource]
+script = ExtResource("1_r5fan")
+id = "GP"
+title = "Gossip"
+CardDesc = "Purposefully leverage sensationalized versions of someone's secrets to build rapport"
+StackTitle = []
+StackValue = Array[int]([1, 1])
+BodyLanguage = ""
+Movement = Array[int]([2, 1, 1])
+FreedomOrder = false
+MovementOrder = Array[int]([])
+FreedomDirection = true
+Diagonal = false
+Ghost = false
+Hover = false
+Cost = 1

@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwmrhs1rhlgxn"]
+
+[ext_resource type="Script" path="res://characters/player_token.gd" id="1_f1hx0"]
+[ext_resource type="Texture2D" uid="uid://bd1mng1rn4mlx" path="res://assets/robot_sprites.png" id="1_odgnw"]
+[ext_resource type="Script" path="res://characters/TokenSkin.gd" id="2_o7735"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_it6yp"]
+radius = 41.0
+height = 146.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wu5ma"]
+radius = 54.0833
+
+[node name="PlayerToken" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_f1hx0")
+SPEED = 32.0
+
+[node name="TokenSkin" type="Sprite2D" parent="."]
+texture = ExtResource("1_odgnw")
+hframes = 3
+vframes = 2
+script = ExtResource("2_o7735")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_it6yp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wu5ma")
+
+[node name="InputOrderButton" type="HBoxContainer" parent="."]
+offset_left = -31.0
+offset_top = -115.0
+offset_right = 31.0
+offset_bottom = -75.0
+
+[node name="X" type="Button" parent="InputOrderButton"]
+layout_mode = 2
+text = "X"
+
+[node name="Y" type="Button" parent="InputOrderButton"]
+layout_mode = 2
+text = "Y"
+
+[node name="Z" type="Button" parent="InputOrderButton"]
+layout_mode = 2
+text = "Z"
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="pressed" from="InputOrderButton/X" to="." method="_on_x_pressed"]
+[connection signal="pressed" from="InputOrderButton/Y" to="." method="_on_y_pressed"]
+[connection signal="pressed" from="InputOrderButton/Z" to="." method="_on_z_pressed"]

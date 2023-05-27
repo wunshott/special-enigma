@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd1u4subp2ufu"]
+
+[ext_resource type="Script" path="res://CardGame/PlayArea.gd" id="1_yjqht"]
+[ext_resource type="Texture2D" uid="uid://3dvq0ya1uwfw" path="res://assets/Card Borders etc/cardborder.png" id="2_7oksx"]
+[ext_resource type="Texture2D" uid="uid://bpcm30cs2cx8v" path="res://assets/Textures/particles.png" id="3_tcrlt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue2nj"]
+size = Vector2(500, 350)
+
+[sub_resource type="Curve" id="Curve_uadx5"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, -18.3667, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_666yb"]
+curve = SubResource("Curve_uadx5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vlcse"]
+lifetime_randomness = 0.11
+emission_shape = 3
+emission_box_extents = Vector3(300, 200, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 25.0
+gravity = Vector3(0, -50, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_curve = SubResource("CurveTexture_666yb")
+angle_min = 1.0
+angle_max = 10.0
+scale_min = 0.25
+scale_max = 0.75
+
+[node name="PlayAreaTop" type="Node2D"]
+scale = Vector2(0.625, 0.625)
+script = ExtResource("1_yjqht")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.19214, 1.16)
+texture = ExtResource("2_7oksx")
+
+[node name="PlayArea" type="Area2D" parent="."]
+monitorable = false
+
+[node name="PlayAreaHitox" type="CollisionShape2D" parent="PlayArea"]
+shape = SubResource("RectangleShape2D_ue2nj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-1, -2)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_vlcse")
+texture = ExtResource("3_tcrlt")
+lifetime = 2.5
+speed_scale = 1.25
+explosiveness = 0.1
+randomness = 0.25
+fixed_fps = 60
+visibility_rect = Rect2(0, 0, 500, 350)
+
+[connection signal="area_entered" from="PlayArea" to="." method="_on_play_area_area_entered"]
+[connection signal="area_exited" from="PlayArea" to="." method="_on_play_area_area_exited"]
+[connection signal="body_entered" from="PlayArea" to="." method="_on_play_area_body_entered"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardAttributes" load_steps=2 format=3 uid="uid://nkbp7klbwcak"]
+
+[ext_resource type="Script" path="res://Cards/CardResources/card_attributes.gd" id="1_xe8wm"]
+
+[resource]
+script = ExtResource("1_xe8wm")
+id = "GL"
+title = "Gaslight"
+CardDesc = "Make your target question their reality and trust you more by confidently asserting their perception isn't real. Move IMPORT MOVEMENT AS VARIABLE HEREadjacent spaces on the board while creating a shadow that mimics your movement at a place of your choosing on the board"
+StackTitle = ["Lie", "Resentment"]
+StackValue = Array[int]([2, 1])
+BodyLanguage = ""
+Movement = Array[int]([99, 99, 99])
+FreedomOrder = false
+MovementOrder = Array[int]([])
+FreedomDirection = true
+Diagonal = false
+Ghost = false
+Hover = false
+Cost = 2

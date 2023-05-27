@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardAttributes" load_steps=2 format=3 uid="uid://cydufkctaiv3f"]
+
+[ext_resource type="Script" path="res://Cards/CardResources/card_attributes.gd" id="1_r4oi6"]
+
+[resource]
+script = ExtResource("1_r4oi6")
+id = "BP"
+title = "Back Pedal"
+CardDesc = "Undoes last turn if condition met"
+StackTitle = []
+StackValue = Array[int]([])
+BodyLanguage = ""
+Movement = Array[int]([2, 3, 0])
+MovementOrder = Array[int]([1, 2, 3])
+FreedomDirection = false
+Diagonal = false
+Ghost = false
+Hover = false
+Cost = 0

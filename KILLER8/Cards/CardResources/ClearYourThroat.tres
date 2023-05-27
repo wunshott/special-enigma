@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardAttributes" load_steps=2 format=3 uid="uid://5nkk0a0ub02o"]
+
+[ext_resource type="Script" path="res://Cards/CardResources/card_attributes.gd" id="1_pb6b4"]
+
+[resource]
+script = ExtResource("1_pb6b4")
+id = "CYT"
+title = "Clear Your Throat"
+CardDesc = "Shuffle hand back into deck and draw as many cards"
+StackTitle = []
+StackValue = Array[int]([])
+BodyLanguage = ""
+Movement = Array[int]([2, 1, 1])
+FreedomOrder = false
+MovementOrder = Array[int]([])
+FreedomDirection = true
+Diagonal = false
+Ghost = false
+Hover = false
+Cost = 0
