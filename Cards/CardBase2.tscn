@@ -1,0 +1,191 @@
+[gd_scene load_steps=13 format=3 uid="uid://e4l8fjjo102t"]
+
+[ext_resource type="Script" path="res://Cards/CardBase2.gd" id="1_4lnid"]
+[ext_resource type="Resource" uid="uid://cydufkctaiv3f" path="res://Cards/CardResources/BackPedal.tres" id="2_6lhjr"]
+[ext_resource type="Texture2D" uid="uid://bxpsiwo45tgan" path="res://assets/CardArt/Ghost/images/ghost-Sheet_0.png" id="2_omit8"]
+[ext_resource type="Resource" uid="uid://5nkk0a0ub02o" path="res://Cards/CardResources/ClearYourThroat.tres" id="3_e5e0h"]
+[ext_resource type="Texture2D" uid="uid://bbhvb81vqwend" path="res://assets/CardArt/feather_pickup/frames/featherpickup12.png" id="3_f4r1i"]
+[ext_resource type="Texture2D" uid="uid://clvm5dka71b1d" path="res://assets/Textures/4_arrows.png" id="4_bksb6"]
+[ext_resource type="Resource" uid="uid://nkbp7klbwcak" path="res://Cards/CardResources/Gaslight.tres" id="4_scvy2"]
+[ext_resource type="Resource" uid="uid://cuo84lydqk13s" path="res://Cards/CardResources/Gossip.tres" id="5_3bj82"]
+[ext_resource type="Resource" uid="uid://d2lm56sauydq7" path="res://Cards/CardResources/ObliviousPrison.tres" id="6_mxglj"]
+
+[sub_resource type="Theme" id="Theme_1bbkb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jws0"]
+bg_color = Color(0.490196, 0.580392, 0.905882, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ew2p"]
+size = Vector2(250, 350)
+
+[node name="CardBase" type="Area2D"]
+collision_layer = 4
+collision_mask = 12
+script = ExtResource("1_4lnid")
+CardData = Array[Resource("res://Cards/CardResources/card_attributes.gd")]([ExtResource("2_6lhjr"), ExtResource("3_e5e0h"), ExtResource("4_scvy2"), ExtResource("5_3bj82"), ExtResource("6_mxglj")])
+
+[node name="ColorRect" type="Panel" parent="."]
+offset_right = 250.0
+offset_bottom = 350.0
+mouse_filter = 2
+theme = SubResource("Theme_1bbkb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0jws0")
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+custom_minimum_size = Vector2(250, 350)
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 350.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardCost" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="CardTitle" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Card Title"
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.211765, 0.647059, 0.352941, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "1"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0]Resentment[/wave]
+"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Lie
+"
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GhostSprite" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer4"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_omit8")
+
+[node name="HoverSprite" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer4"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_f4r1i")
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Movement" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "x1 Y3 Z0"
+
+[node name="FreedomSprite" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer4"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_bksb6")
+
+[node name="Debug" type="VBoxContainer" parent="."]
+offset_left = 256.0
+offset_right = 296.0
+offset_bottom = 104.0
+mouse_filter = 2
+
+[node name="id" type="Label" parent="Debug"]
+layout_mode = 2
+
+[node name="state" type="Label" parent="Debug"]
+layout_mode = 2
+
+[node name="parent" type="Label" parent="Debug"]
+layout_mode = 2
+
+[node name="handspot" type="Label" parent="Debug"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 350.0
+mouse_filter = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 350.0
+mouse_filter = 2
+border_color = Color(1, 1, 1, 1)
+border_width = 4.0
+editor_only = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["clickableObject"]]
+position = Vector2(125, 175)
+shape = SubResource("RectangleShape2D_4ew2p")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="." to="." method="_on_mouse_shape_exited"]

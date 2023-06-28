@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://uirekiflly7j"]
+
+[ext_resource type="Script" path="res://UI/ResourceItemDisplay.gd" id="1_k8u1x"]
+[ext_resource type="Texture2D" uid="uid://dexjhqluyd7lo" path="res://assets/Textures/Icons/Icon1.png" id="2_a1feh"]
+[ext_resource type="Texture2D" uid="uid://bob4ir5lik31h" path="res://assets/Textures/Icons/Icon13.png" id="3_nycra"]
+
+[node name="ResourceItemDisplay" type="VBoxContainer" groups=["ResourceBars"]]
+tooltip_text = "This is the description of the resource"
+script = ExtResource("1_k8u1x")
+bar_fill_empty_speed = 0.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_a1feh")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Resource Name: Test"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Resource Quantity"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer" groups=["ResourceBars"]]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 5.0
+step = 1.0
+fill_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_nycra")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Resource Name: Basic Card Draw"
+
+[node name="Label2" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Resource Quantity"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer2" groups=["ResourceBars"]]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 5.0
+step = 1.0
+fill_mode = 3
+
+[connection signal="value_changed" from="HBoxContainer/ProgressBar" to="." method="_on_progress_bar_value_changed"]
+[connection signal="value_changed" from="HBoxContainer2/ProgressBar" to="." method="_on_progress_bar_value_changed"]

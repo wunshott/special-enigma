@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1oetwbfl2vui"]
+
+[ext_resource type="Script" path="res://Playspace.gd" id="1_jvqcs"]
+[ext_resource type="Script" path="res://Cards.gd" id="2_font6"]
+[ext_resource type="PackedScene" uid="uid://vtal1h7lbw8o" path="res://characters/Token.tscn" id="2_frmtw"]
+[ext_resource type="Script" path="res://Deck.gd" id="3_t7h6y"]
+[ext_resource type="Texture2D" uid="uid://bur4hbd8wn1ii" path="res://assets/Card Borders etc/Back_Texture.png" id="4_e8pr7"]
+[ext_resource type="Texture2D" uid="uid://blypku3nc0t5g" path="res://assets/Card Borders etc/Gold_Border.png" id="5_j7le2"]
+[ext_resource type="Script" path="res://DeckDraw.gd" id="6_d7jjp"]
+[ext_resource type="PackedScene" uid="uid://c7qdjllfn4r3i" path="res://CardGame/PlayerHand.tscn" id="8_3vhv1"]
+[ext_resource type="PackedScene" uid="uid://dd1u4subp2ufu" path="res://CardGame/PlayArea.tscn" id="8_mcvug"]
+[ext_resource type="PackedScene" uid="uid://dwmrhs1rhlgxn" path="res://characters/player_token.tscn" id="9_84hmh"]
+[ext_resource type="PackedScene" uid="uid://c0yoaqraotjp2" path="res://manipulation/BaseMap.tscn" id="11_yp8or"]
+[ext_resource type="PackedScene" uid="uid://d1index528fx5" path="res://characters/Dialogue.tscn" id="12_4nxfm"]
+
+[node name="Playspace" type="Node2D"]
+position = Vector2(-36.5378, -20.7887)
+script = ExtResource("1_jvqcs")
+
+[node name="TileMap" parent="." instance=ExtResource("11_yp8or")]
+position = Vector2(256, 32)
+
+[node name="Cards" type="Node2D" parent="."]
+editor_description = "All cards wil be added to this node so they're separated from everything else and easy to find. "
+script = ExtResource("2_font6")
+
+[node name="Deck" type="Node2D" parent="."]
+position = Vector2(40, 25)
+script = ExtResource("3_t7h6y")
+
+[node name="DeckDraw" type="TextureButton" parent="Deck"]
+offset_right = 40.0
+offset_bottom = 56.0
+scale = Vector2(3.125, 3.125)
+texture_normal = ExtResource("4_e8pr7")
+texture_pressed = ExtResource("4_e8pr7")
+texture_hover = ExtResource("4_e8pr7")
+texture_disabled = ExtResource("5_j7le2")
+script = ExtResource("6_d7jjp")
+
+[node name="PlayerHand" parent="." instance=ExtResource("8_3vhv1")]
+position = Vector2(38.9474, 21.7842)
+
+[node name="PlayAreaTop" parent="." instance=ExtResource("8_mcvug")]
+position = Vector2(1025, 140)
+
+[node name="PlayerToken" parent="." instance=ExtResource("9_84hmh")]
+y_sort_enabled = true
+position = Vector2(-74.7731, 235.134)
+collision_layer = 1
+script = null
+
+[node name="Token" parent="." instance=ExtResource("2_frmtw")]
+position = Vector2(425.331, 204.505)
+
+[node name="TemplateDialogue" parent="." instance=ExtResource("12_4nxfm")]
+offset_left = 791.278
+offset_top = 293.896
+offset_right = 791.278
+offset_bottom = 293.896
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
+offset_left = 119.865
+offset_top = 419.526
+offset_right = 369.865
+offset_bottom = 769.526
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(250, 350)
+render_target_update_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+zoom = Vector2(0.95, 0.95)
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 1329.08
+offset_top = 27.1043
+offset_right = 1655.08
+offset_bottom = 197.104
+
+[connection signal="basic_movement" from="Cards" to="PlayerToken" method="_on_cards_basic_movement"]
+[connection signal="card_played" from="Cards" to="Token" method="_on_cards_card_played_move_token"]
+[connection signal="child_entered_tree" from="Cards" to="Cards" method="_on_child_entered_tree"]
+[connection signal="free_movement" from="Cards" to="PlayerToken" method="_on_cards_free_movement"]
+[connection signal="ghost" from="Cards" to="PlayerToken" method="_on_cards_ghost"]
+[connection signal="move_token" from="Cards" to="PlayerToken" method="_on_cards_move_token"]
+[connection signal="prompt" from="Cards" to="PlayerToken" method="_on_cards_prompt"]
+[connection signal="pressed" from="Deck/DeckDraw" to="." method="_on_deck_draw_pressed"]
+[connection signal="card_is_focused" from="PlayerHand" to="." method="_on_player_hand_card_is_focused"]
+[connection signal="card_is_played" from="PlayerHand" to="." method="_on_player_hand_card_is_played"]
+[connection signal="CardCanPlay" from="PlayAreaTop" to="." method="_on_play_area_top_card_can_play"]
+[connection signal="CardCannotPlay" from="PlayAreaTop" to="." method="_on_play_area_top_card_cannot_play"]
+[connection signal="token_death" from="Token" to="." method="_on_token_token_death"]
+[connection signal="card_draw2" from="TemplateDialogue" to="." method="_on_template_dialogue_card_draw_2"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

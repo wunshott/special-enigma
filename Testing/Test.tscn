@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://vhe5tbbn1y6u"]
+
+[ext_resource type="Script" path="res://Testing/Test.gd" id="1_ixer0"]
+[ext_resource type="Resource" uid="uid://nkbp7klbwcak" path="res://Cards/CardResources/Gaslight.tres" id="2_rpqdg"]
+[ext_resource type="Resource" uid="uid://cuo84lydqk13s" path="res://Cards/CardResources/Gossip.tres" id="3_6qch7"]
+[ext_resource type="Script" path="res://Testing/RichTextLabel.gd" id="4_ai8gd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgeos"]
+size = Vector2(140, 240)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ixer0")
+Test = ExtResource("2_rpqdg")
+TestC = ExtResource("2_rpqdg")
+testarray = ["a", "b", "c"]
+testcardarray = Array[Resource("res://Cards/CardResources/card_attributes.gd")]([ExtResource("2_rpqdg"), ExtResource("3_6qch7"), ExtResource("2_rpqdg")])
+
+[node name="Origin" type="Node2D" parent="."]
+
+[node name="Destination" type="Node2D" parent="."]
+
+[node name="ButtonSpawnNode" type="Button" parent="."]
+offset_left = 208.0
+offset_top = 154.0
+offset_right = 656.0
+offset_bottom = 265.0
+text = "Spawn Node"
+
+[node name="ButtonChangeParent" type="Button" parent="."]
+offset_left = 515.0
+offset_top = 302.0
+offset_right = 1062.0
+offset_bottom = 445.0
+text = "Change Parent of spawned node to Destination Node"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(226, 452)
+shape = SubResource("RectangleShape2D_tgeos")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 450.0
+offset_top = 468.0
+offset_right = 911.0
+offset_bottom = 601.0
+focus_mode = 2
+text = "Random Text"
+selection_enabled = true
+script = ExtResource("4_ai8gd")
+
+[connection signal="pressed" from="ButtonSpawnNode" to="." method="_on_button_spawn_node_pressed"]
+[connection signal="pressed" from="ButtonChangeParent" to="." method="_on_button_change_parent_pressed"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

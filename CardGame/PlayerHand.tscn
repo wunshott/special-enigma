@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7qdjllfn4r3i"]
+
+[ext_resource type="Script" path="res://PlayerHand.gd" id="1_15oua"]
+
+[sub_resource type="Curve" id="Curve_6eq51"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 2.0, 0, 1, Vector2(1, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7srgy"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_pxjf3"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, -0.0302414, 0, 0, Vector2(1, -1), 0.0722837, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uy78d"]
+size = Vector2(1917.21, 198.018)
+
+[node name="PlayerHand" type="Node2D"]
+script = ExtResource("1_15oua")
+spread_curve = SubResource("Curve_6eq51")
+height_curve = SubResource("Curve_7srgy")
+rotation_curve = SubResource("Curve_pxjf3")
+max_width = 500.0
+max_height = 35.0
+rotation_magnitude = -0.392
+
+[node name="Cards" type="Node2D" parent="."]
+position = Vector2(0, -0.000183105)
+
+[node name="HandExpandArea" type="Area2D" parent="."]
+position = Vector2(577.622, 552.215)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HandExpandArea"]
+position = Vector2(382.529, 425.85)
+shape = SubResource("RectangleShape2D_uy78d")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree" binds= [""]]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="mouse_entered" from="HandExpandArea" to="." method="_on_hand_expand_area_mouse_entered"]
+[connection signal="mouse_exited" from="HandExpandArea" to="." method="_on_hand_expand_area_mouse_exited"]

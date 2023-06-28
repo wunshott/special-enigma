@@ -1,0 +1,324 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwgt4ioptbbxu"]
+
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_yic04"]
+[ext_resource type="Texture2D" uid="uid://3dvq0ya1uwfw" path="res://assets/Card Borders etc/cardborder.png" id="2_815xm"]
+[ext_resource type="Resource" uid="uid://nkbp7klbwcak" path="res://Cards/CardResources/Gaslight.tres" id="2_cwjgh"]
+[ext_resource type="Resource" uid="uid://cuo84lydqk13s" path="res://Cards/CardResources/Gossip.tres" id="3_eten0"]
+[ext_resource type="Texture2D" uid="uid://bw56siip7u4y0" path="res://assets/CardArt/gaslight.jpeg" id="3_jtfds"]
+[ext_resource type="Resource" uid="uid://5nkk0a0ub02o" path="res://Cards/CardResources/ClearYourThroat.tres" id="4_gxdll"]
+[ext_resource type="Texture2D" uid="uid://bpi8658n5a7ps" path="res://assets/Card Borders etc/background shade.png" id="4_tfjdl"]
+[ext_resource type="Texture2D" uid="uid://chlfsv2usdjrc" path="res://assets/CardArt/SoulOnFire.PNG" id="5_4x8p7"]
+[ext_resource type="Resource" uid="uid://cydufkctaiv3f" path="res://Cards/CardResources/BackPedal.tres" id="5_m3ue6"]
+[ext_resource type="Resource" uid="uid://d2lm56sauydq7" path="res://Cards/CardResources/ObliviousPrison.tres" id="6_6ilah"]
+[ext_resource type="Texture2D" uid="uid://blypku3nc0t5g" path="res://assets/Card Borders etc/Gold_Border.png" id="8_owk1r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kx0hs"]
+size = Vector2(250, 350)
+
+[node name="CardBase" type="Control"]
+custom_minimum_size = Vector2(250, 350)
+layout_mode = 3
+anchor_right = 0.054
+anchor_bottom = 0.135
+offset_left = -125.0
+offset_top = -175.0
+offset_right = 62.792
+offset_bottom = 87.52
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(125, 175)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("1_yic04")
+CardData = Array[Resource("res://Cards/CardResources/card_attributes.gd")]([ExtResource("2_cwjgh"), ExtResource("3_eten0"), ExtResource("4_gxdll"), ExtResource("5_m3ue6"), ExtResource("6_6ilah")])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+offset_right = 250.0
+offset_bottom = 350.0
+mouse_filter = 2
+color = Color(0.721569, 0.741176, 0.960784, 1)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 350.0
+mouse_filter = 2
+columns = 3
+
+[node name="ColorRect4" type="ColorRect" parent="GridContainer"]
+layout_mode = 2
+
+[node name="CardLayout" type="PanelContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/CardLayout"]
+layout_mode = 2
+
+[node name="TopGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/TopGap"]
+layout_mode = 2
+color = Color(0.478431, 1, 1, 1)
+
+[node name="TopBar" type="HBoxContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/TopBar/LeftGap"]
+layout_mode = 2
+
+[node name="Name" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/TopBar"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GridContainer/CardLayout/VBoxContainer/TopBar/Name"]
+layout_mode = 2
+texture = ExtResource("4_tfjdl")
+
+[node name="CenterContainer" type="CenterContainer" parent="GridContainer/CardLayout/VBoxContainer/TopBar/Name"]
+layout_mode = 2
+
+[node name="CardTitleLabel" type="Label" parent="GridContainer/CardLayout/VBoxContainer/TopBar/Name"]
+layout_mode = 2
+text = "CARD TITLE"
+
+[node name="MidGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/TopBar/MidGap"]
+layout_mode = 2
+
+[node name="CardCost" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/TopBar"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GridContainer/CardLayout/VBoxContainer/TopBar/CardCost"]
+layout_mode = 2
+texture = ExtResource("4_tfjdl")
+
+[node name="CenterContainer" type="CenterContainer" parent="GridContainer/CardLayout/VBoxContainer/TopBar/CardCost"]
+layout_mode = 2
+
+[node name="CardCostLabel" type="Label" parent="GridContainer/CardLayout/VBoxContainer/TopBar/CardCost"]
+layout_mode = 2
+text = "CARD COST"
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/TopBar/MarginContainer"]
+layout_mode = 2
+
+[node name="MidGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/MidGap"]
+layout_mode = 2
+
+[node name="CardArtContainer" type="HBoxContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/CardArtContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CardArt" type="TextureRect" parent="GridContainer/CardLayout/VBoxContainer/CardArtContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_4x8p7")
+expand_mode = 1
+
+[node name="RightGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/CardArtContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MidGap4" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/MidGap4"]
+layout_mode = 2
+
+[node name="ManueverDescription" type="HBoxContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription/LeftGap"]
+layout_mode = 2
+
+[node name="DescriptionContainer" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription"]
+layout_mode = 2
+
+[node name="ManeuverValue" type="Label" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription/DescriptionContainer"]
+layout_mode = 2
+text = "+1"
+
+[node name="MidGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect3" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription/MidGap"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription"]
+layout_mode = 2
+
+[node name="ManeuverName" type="Label" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription/MarginContainer"]
+layout_mode = 2
+text = "Lie(s)"
+
+[node name="RightGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect2" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/ManueverDescription/RightGap"]
+layout_mode = 2
+
+[node name="MidGap2" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/MidGap2"]
+layout_mode = 2
+
+[node name="BodyLanguageSignal" type="HBoxContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/BodyLanguageSignal"]
+layout_mode = 2
+
+[node name="DescriptionContainer" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/BodyLanguageSignal"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BodyLanguageName" type="Label" parent="GridContainer/CardLayout/VBoxContainer/BodyLanguageSignal/DescriptionContainer"]
+layout_mode = 2
+text = "Alter body langauge to X"
+autowrap_mode = 3
+
+[node name="RightGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/BodyLanguageSignal"]
+layout_mode = 2
+
+[node name="MidGap3" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/MidGap3"]
+layout_mode = 2
+
+[node name="FlavorText" type="HBoxContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="LeftGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/FlavorText"]
+layout_mode = 2
+
+[node name="DescriptionContainer" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/FlavorText"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FlavorTextLabel" type="RichTextLabel" parent="GridContainer/CardLayout/VBoxContainer/FlavorText/DescriptionContainer"]
+layout_mode = 2
+text = "This text box contains the flavor text for the card"
+
+[node name="RightGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/FlavorText"]
+layout_mode = 2
+
+[node name="BottomGap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer/CardLayout/VBoxContainer/BottomGap"]
+layout_mode = 2
+
+[node name="MovementValues" type="HBoxContainer" parent="GridContainer/CardLayout/VBoxContainer"]
+layout_mode = 2
+
+[node name="IDContainer" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/MovementValues"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GridContainer/CardLayout/VBoxContainer/MovementValues/IDContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GridContainer/CardLayout/VBoxContainer/MovementValues/IDContainer"]
+layout_mode = 2
+
+[node name="IDText" type="Label" parent="GridContainer/CardLayout/VBoxContainer/MovementValues/IDContainer/CenterContainer"]
+layout_mode = 2
+text = "ID"
+
+[node name="Middle Gap" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/MovementValues"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DescriptionContainer" type="MarginContainer" parent="GridContainer/CardLayout/VBoxContainer/MovementValues"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GridContainer/CardLayout/VBoxContainer/MovementValues/DescriptionContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GridContainer/CardLayout/VBoxContainer/MovementValues/DescriptionContainer"]
+layout_mode = 2
+
+[node name="MovementDescription" type="Label" parent="GridContainer/CardLayout/VBoxContainer/MovementValues/DescriptionContainer/CenterContainer"]
+layout_mode = 2
+text = "X 1 Y 0 Z 2"
+
+[node name="ColorRect2" type="ColorRect" parent="GridContainer"]
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ColorRect5" type="ColorRect" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="ColorRect6" type="ColorRect" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="CardBorder" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-4, -1)
+scale = Vector2(1.1179, 1.16333)
+texture = ExtResource("2_815xm")
+centered = false
+
+[node name="CardArt" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(114, 141)
+scale = Vector2(0.72, 0.782222)
+texture = ExtResource("3_jtfds")
+
+[node name="Focus" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 249.0
+offset_bottom = 350.0
+texture_hover = ExtResource("8_owk1r")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(125, 175)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_kx0hs")
+
+[connection signal="mouse_entered" from="Focus" to="." method="_on_focus_mouse_entered"]
+[connection signal="mouse_exited" from="Focus" to="." method="_on_focus_mouse_exited"]
